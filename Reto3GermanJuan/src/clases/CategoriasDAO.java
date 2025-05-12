@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
+import util.Functions;
 import util.SqlConnection;
 
 
@@ -34,7 +36,7 @@ public class CategoriasDAO {
 	public static void displayCategorias() {
 		try {
 			Connection con = SqlConnection.abirConexion();
-			PreparedStatement ps = con.prepareStatement("Select idcategoria,nombre from categoria");
+			PreparedStatement ps = con.prepareStatement("Select idcategoria,nombre from categorias");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				System.out.println("Id: "+rs.getInt(1)+" Nombre: "+rs.getString(2));
@@ -43,6 +45,12 @@ public class CategoriasDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void listarProductosPorCategorias() {
+		Scanner sc = new Scanner(System.in);
+		displayCategorias();
+		int id = Functions.dimeEntero("Selecciona una categoria", sc);
+		ProductosDAO.displayProductos(new Categorias(id, null));
 	}
 	public static void main(String[] args) {
 		
