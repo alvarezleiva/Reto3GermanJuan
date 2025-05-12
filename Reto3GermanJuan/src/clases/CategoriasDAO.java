@@ -8,8 +8,8 @@ import java.sql.Statement;
 import util.SqlConnection;
 
 
-public class categoriasDAO {
-	public static void inserta(categorias categoria) {
+public class CategoriasDAO {
+	public static void inserta(Categorias categoria) {
 		try {
 			// abro conexion
 			Connection con = SqlConnection.abirConexion();
@@ -32,6 +32,10 @@ public class categoriasDAO {
 }
 	public static void main(String[] args) {
 		
+		Categorias categoria = new Categorias();
+		categoria.setNombre("prueba");
+		
+		CategoriasDAO.inserta(categoria);
 		
 		
 	}

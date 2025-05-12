@@ -1,6 +1,6 @@
 package clases;
 
-public class clientes {
+public class Clientes {
 	private int idCliente;
 	private String nombre;
 	private String direccion;
@@ -38,14 +38,14 @@ public class clientes {
 		this.codigo = codigo;
 	}
 
-	public clientes(int idCliente, String nombre, String direccion, int codigo) {
+	public Clientes(int idCliente, String nombre, String direccion, int codigo) {
 		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.codigo = codigo;
 	}
 
-	public clientes() {
+	public Clientes() {
 	}
 
 	@Override

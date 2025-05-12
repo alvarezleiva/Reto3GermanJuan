@@ -1,8 +1,8 @@
 package clases;
 
-public class productos {
+public class Productos {
 	private int idproducto;
-	private categorias idcategoria;
+	private Categorias idcategoria;
 	private String nombre;
 	private double precio;
 	private String descripcion;
@@ -11,7 +11,7 @@ public class productos {
 	private int stock;
 	
 	
-	public productos(int idproducto, categorias idcategoria, String nombre, double precio, String descripcion,
+	public Productos(int idproducto, Categorias idcategoria, String nombre, double precio, String descripcion,
 			String color, String talla, int stock) {
 		this.idproducto = idproducto;
 		this.idcategoria = idcategoria;
@@ -26,7 +26,7 @@ public class productos {
 	
 
 
-	public productos() {
+	public Productos() {
 	}
 
 
@@ -42,12 +42,12 @@ public class productos {
 	}
 
 
-	public categorias getIdcategoria() {
+	public Categorias getIdcategoria() {
 		return idcategoria;
 	}
 
 
-	public void setIdcategoria(categorias idcategoria) {
+	public void setIdcategoria(Categorias idcategoria) {
 		this.idcategoria = idcategoria;
 	}
 

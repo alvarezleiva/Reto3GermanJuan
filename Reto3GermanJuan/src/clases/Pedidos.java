@@ -2,9 +2,9 @@ package clases;
 
 import java.sql.Date;
 
-public class pedidos {
+public class Pedidos {
 	private int idPedido;
-	private clientes idCliente;
+	private Clientes idCliente;
 	private double precioTotal;
 	private String direccionEnvio;
 	private Date fecha;
@@ -17,11 +17,11 @@ public class pedidos {
 		this.idPedido = idPedido;
 	}
 
-	public clientes getIdCliente() {
+	public Clientes getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(clientes idCliente) {
+	public void setIdCliente(Clientes idCliente) {
 		this.idCliente = idCliente;
 	}
 
@@ -49,7 +49,7 @@ public class pedidos {
 		this.fecha = fecha;
 	}
 
-	public pedidos(int idPedido, clientes idCliente, double precioTotal, String direccionEnvio, Date fecha) {
+	public Pedidos(int idPedido, Clientes idCliente, double precioTotal, String direccionEnvio, Date fecha) {
 		this.idPedido = idPedido;
 		this.idCliente = idCliente;
 		this.precioTotal = precioTotal;
@@ -57,7 +57,7 @@ public class pedidos {
 		this.fecha = fecha;
 	}
 
-	public pedidos() {
+	public Pedidos() {
 	}
 
 	@Override

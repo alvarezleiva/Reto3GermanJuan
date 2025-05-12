@@ -1,6 +1,6 @@
 package clases;
 
-public class categorias {
+public class Categorias {
 
 	private int idCategoria;
 	private String nombre;
@@ -21,12 +21,12 @@ public class categorias {
 		this.nombre = nombre;
 	}
 
-	public categorias(int idCategoria, String nombre) {
+	public Categorias(int idCategoria, String nombre) {
 		this.idCategoria = idCategoria;
 		this.nombre = nombre;
 	}
 
-	public categorias() {
+	public Categorias() {
 	}
 
 	@Override

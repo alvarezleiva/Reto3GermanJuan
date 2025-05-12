@@ -1,10 +1,10 @@
 package clases;
 
-public class pedidoproducto {
+public class PedidoProducto {
 	
 		private int idpedidoproducto;
-		private pedidos idpedido;
-		private productos idproducto;
+		private Pedidos idpedido;
+		private Productos idproducto;
 		private int unidades;
 		private double precio;
 		public int getIdpedidoproducto() {
@@ -13,16 +13,16 @@ public class pedidoproducto {
 		public void setIdpedidoproducto(int idpedidoproducto) {
 			this.idpedidoproducto = idpedidoproducto;
 		}
-		public pedidos getIdpedido() {
+		public Pedidos getIdpedido() {
 			return idpedido;
 		}
-		public void setIdpedido(pedidos idpedido) {
+		public void setIdpedido(Pedidos idpedido) {
 			this.idpedido = idpedido;
 		}
-		public productos getIdproducto() {
+		public Productos getIdproducto() {
 			return idproducto;
 		}
-		public void setIdproducto(productos idproducto) {
+		public void setIdproducto(Productos idproducto) {
 			this.idproducto = idproducto;
 		}
 		public int getUnidades() {
@@ -37,7 +37,7 @@ public class pedidoproducto {
 		public void setPrecio(double precio) {
 			this.precio = precio;
 		}
-		public pedidoproducto(int idpedidoproducto, pedidos idpedido, productos idproducto, int unidades,
+		public PedidoProducto(int idpedidoproducto, Pedidos idpedido, Productos idproducto, int unidades,
 				double precio) {
 			this.idpedidoproducto = idpedidoproducto;
 			this.idpedido = idpedido;
@@ -45,7 +45,7 @@ public class pedidoproducto {
 			this.unidades = unidades;
 			this.precio = precio;
 		}
-		public pedidoproducto() {
+		public PedidoProducto() {
 		}
 		@Override
 		public String toString() {
