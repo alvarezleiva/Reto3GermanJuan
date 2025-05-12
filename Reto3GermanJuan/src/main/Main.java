@@ -2,6 +2,8 @@ package main;
 
 import java.util.Scanner;
 
+import clases.Categorias;
+import clases.CategoriasDAO;
 import util.Functions;
 
 public class Main {
@@ -18,6 +20,11 @@ public class Main {
 					switch (option) {
 					case 1:
 						// 1.1
+						String nombre = Functions.dimeString("Dime el nombre de la categoria", sc);
+						Categorias categoria = new Categorias();
+						categoria.setNombre(nombre);
+						
+						CategoriasDAO.inserta(categoria);
 						break;
 					case 2:
 						// 1.2

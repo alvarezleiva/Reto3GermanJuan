@@ -18,7 +18,7 @@ public class CategoriasDAO {
 			PreparedStatement pst = con.prepareStatement(
 					"insert into categorias(nombre) values(?)",
 					Statement.RETURN_GENERATED_KEYS);
-			pst.setString(2, categoria.getNombre());
+			pst.setString(1, categoria.getNombre());
 			pst.execute();
 			// recupero clave
 			ResultSet rs = pst.getGeneratedKeys();
@@ -46,10 +46,7 @@ public class CategoriasDAO {
 	}
 	public static void main(String[] args) {
 		
-		Categorias categoria = new Categorias();
-		categoria.setNombre("prueba");
-		
-		CategoriasDAO.inserta(categoria);
+	
 		
 		
 	}
