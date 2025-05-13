@@ -1,3 +1,4 @@
+
 package clases;
 
 public class Productos {
@@ -23,7 +24,27 @@ public class Productos {
 		this.stock = stock;
 	}
 	
-	
+
+
+
+
+
+
+	public Productos(int idproducto, String nombre, double precio, String descripcion, String color, String talla,
+			int stock) {
+		this.idproducto = idproducto;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.descripcion = descripcion;
+		this.color = color;
+		this.talla = talla;
+		this.stock = stock;
+	}
+
+
+
+
+
 
 
 	public Productos() {

@@ -50,10 +50,11 @@ public class Main {
 				// 2
 				do {
 					option=Functions.dimeEntero("2.1- Listar productos por categoria\n2.2- Buscar productos\n2.3- Salir", sc);
+					System.out.println(option);
 					switch (option) {
 					case 1:
 						// 2.1
-						
+						CategoriasDAO.listarProductosPorCategorias();
 						break;
 					case 2:
 						// 2.2
