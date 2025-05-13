@@ -13,7 +13,7 @@ import java.util.function.Function;
 import util.Functions;
 import util.SqlConnection;
 
-public class ProductosDAO {
+public class ProductosDAO2 {
 
 	public static void gestionProductos(Productos producto) {
 		try {
