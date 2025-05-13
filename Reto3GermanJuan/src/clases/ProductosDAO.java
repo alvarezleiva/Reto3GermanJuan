@@ -19,7 +19,7 @@ public class ProductosDAO {
 					"insert into categorias(idproducto,idcategoria,nombre,precio,descripcion,color,talla,stock) values(?,?,?,?,?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			pst.setInt(1, producto.getIdproducto());
-			pst.setInt(2, producto.getIdcategoria());
+			pst.setInt(2, producto.getIdcategoria().getIdCategoria());
 			
 			pst.execute();
 			// recupero clave
