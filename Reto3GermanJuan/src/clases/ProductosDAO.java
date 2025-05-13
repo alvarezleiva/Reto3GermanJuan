@@ -46,32 +46,7 @@ public class ProductosDAO {
 		}
 	}
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-	
-		int idProducto = Functions.dimeEntero("Introdce un idProducto", sc);
-		int idCategoria = Functions.dimeEntero("Introduce un idCategoria", sc);
-		String nombre = Functions.dimeString("Introduce el nombre", sc);
-		double precio = Functions.dimeDouble("Introduce el precio", sc);
-		String descripcion = Functions.dimeString("Introduce su descripción", sc);
-		String color = Functions.dimeString("Introduce su color", sc);
-		String talla = Functions.dimeString("Introduce su color", sc);
-		int stock = Functions.dimeEntero("Introduce stock", sc);
-		
-		
-		Productos pro = new Productos(idProducto, new Categorias(idCategoria,null), nombre,precio,descripcion,color,talla,stock);
-		
-		if(idCategoria == pro.getIdcategoria().getIdCategoria()) {
-			System.out.println("El idCategoria introducido coincide con la categoria: " + pro.getIdcategoria().getNombre());
-			pro.setIdcategoria(new Categorias(idCategoria,null));
-			ProductosDAO.gestionProductos(pro);
-		}
-		
-		
-		
-		
 
-	}
 
 	public static void displayProductos(Categorias categoria) {
 		try {

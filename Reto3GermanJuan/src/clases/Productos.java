@@ -30,9 +30,9 @@ public class Productos {
 
 
 
-	public Productos(int idproducto, String nombre, double precio, String descripcion, String color, String talla,
+	public Productos(String nombre, double precio, String descripcion, String color, String talla,
 			int stock) {
-		this.idproducto = idproducto;
+
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descripcion = descripcion;
