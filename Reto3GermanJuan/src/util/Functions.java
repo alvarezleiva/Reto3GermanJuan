@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import clases.Clientes;
+import clases.Productos;
+
 public class Functions {
 	// indica si el String que recibe como parametro es entero
 	public static boolean esInt(String s) {
@@ -149,6 +152,31 @@ public class Functions {
 	public static Date convierte_LocalDate_a_Date(LocalDate fLocalDate) {
 		java.util.Date d = Date.from(fLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		return new Date(d.getTime());
+	}
+	public static void displayProductos(List<Productos> productos) {
+		for (Productos productos2 : productos) {
+			System.out.println(productos2.toString());
+		}
+	}
+	public static boolean searchClienteCodigo(List<Clientes> clientes, Clientes cliente) {
+		boolean found = false;
+		for (Clientes clientes2 : clientes) {
+			if (clientes2.getCodigo()==cliente.getCodigo()) {
+				cliente=clientes2;
+				return true;
+			}
+		}
+		return found;
+	}
+	public static boolean searchProductoNombre(List<Productos> productos,Productos producto) {
+		boolean found = false;
+		for (Productos productos2 : productos) {
+			if (productos2.getNombre().trim().equalsIgnoreCase(producto.getNombre().trim())) {
+				producto=productos2;
+				return true;
+			}
+		}
+		return found;
 	}
 
 }
