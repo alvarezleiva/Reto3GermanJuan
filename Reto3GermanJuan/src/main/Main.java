@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import clases.Categorias;
 import clases.CategoriasDAO;
+import clases.ProductosDAO2;
 import util.Functions;
 
 public class Main {
@@ -58,7 +59,7 @@ public class Main {
 						break;
 					case 2:
 						// 2.2
-						
+						ProductosDAO2.buscarProductos();
 						break;
 					}
 				} while (option!=3);

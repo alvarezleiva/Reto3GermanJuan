@@ -21,7 +21,7 @@ public class ProductosDAO {
 			Connection con = SqlConnection.abirConexion();
 			// creo select
 			PreparedStatement pst = con.prepareStatement(
-					"insert into categorias(idproducto,idcategoria,nombre,precio,descripcion,color,talla,stock) values(?,?,?,?,?,?,?,?)",
+					"insert into productos(idproducto,idcategoria,nombre,precio,descripcion,color,talla,stock) values(?,?,?,?,?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			pst.setInt(1, producto.getIdproducto());
 
@@ -29,9 +29,9 @@ public class ProductosDAO {
 			pst.setString(3, producto.getNombre());
 			pst.setDouble(4, producto.getPrecio());
 			pst.setString(5, producto.getDescripcion());
-			pst.setString(5, producto.getColor());
-			pst.setString(6, producto.getTalla());
-			pst.setInt(7, producto.getStock());
+			pst.setString(6, producto.getColor());
+			pst.setString(7, producto.getTalla());
+			pst.setInt(8, producto.getStock());
 
 			pst.execute();
 			// recupero clave

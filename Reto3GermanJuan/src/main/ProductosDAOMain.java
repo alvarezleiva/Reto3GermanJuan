@@ -25,6 +25,9 @@ public class ProductosDAOMain {
 
 		List<Categorias> list = CategoriasDAO.displayCategoriasLista();
 		boolean existe = false;
+		for (Categorias categorias : list) {
+			System.out.println(categorias.toString());
+		}
 
 		do {
 			int idCategoria = Functions.dimeEntero("Introduce el idCategoria", sc);
