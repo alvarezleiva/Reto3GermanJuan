@@ -12,7 +12,6 @@ import util.Functions;
 public class ProductosDAOMain {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
 		Scanner sc = new Scanner(System.in);
 
 		String nombre = Functions.dimeString("Introduce el nombre", sc);
@@ -42,11 +41,6 @@ public class ProductosDAOMain {
 
 		} while (!existe);
 		
-		ProductosDAO.gestionProductos(pro);
-=======
-		gestionCategorias();
->>>>>>> branch 'main' of https://github.com/alvarezleiva/Reto3GermanJuan.git
-
 	}
 
 	

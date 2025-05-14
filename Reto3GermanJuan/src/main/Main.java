@@ -4,11 +4,8 @@ import java.util.Scanner;
 
 import clases.Categorias;
 import clases.CategoriasDAO;
-<<<<<<< HEAD
 import clases.ProductosDAO2;
-=======
 import clases.ProductosDAO;
->>>>>>> branch 'main' of https://github.com/alvarezleiva/Reto3GermanJuan.git
 import util.Functions;
 
 public class Main {
