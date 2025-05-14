@@ -72,6 +72,25 @@ public class ProductosDAO {
 			e.printStackTrace();
 		}
 	}
+	public static List<Productos> listProductos() {
+		List<Productos> productos = null;
+		try {
+			Connection con = SqlConnection.abirConexion();
+			PreparedStatement ps = con.prepareStatement(
+					"Select idproducto, idcategoria, nombre, precio, descripcion, color, talla, stock  from productos");
+			ResultSet rs = ps.executeQuery();
+			productos = new ArrayList<>();
+			while (rs.next()) {
+				Productos producto = new Productos(rs.getInt(1), new Categorias(rs.getInt(2), null), rs.getString(3),
+						rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
+				productos.add(producto);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productos;
+	}
 	
 	public static void gestionCategorias() {
 		Scanner sc = new Scanner(System.in);
