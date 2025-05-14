@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import clases.Categorias;
 import clases.CategoriasDAO;
+import clases.Clientes;
+import clases.ClientesDAO;
 import clases.ProductosDAO;
 import util.Functions;
 
@@ -36,7 +38,16 @@ public class Main {
 							option = Functions.dimeEntero("1.3.1- Alta de nuevos clientes\n1.3.2- Busqueda por codigo\n1.3.3- Salir", sc);
 							switch (option) {
 							case 1:
-							
+
+								String nombreNuevoCliente = Functions.dimeString("Introduce el nombre del cliente", sc);
+								String direccionNuevoCliente = Functions.dimeString("Introduce la dirección del cliente", sc);
+								int numeroNuevoCliente = Functions.dimeEntero("Introduce su código", sc);
+								Clientes c = new Clientes(nombreNuevoCliente,direccionNuevoCliente, numeroNuevoCliente);
+								
+								ClientesDAO.inserta(c);
+								
+
+				
 								break;
 							case 2:
 								// 1.3.2
