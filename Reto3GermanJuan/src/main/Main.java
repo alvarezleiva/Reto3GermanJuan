@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 import clases.Categorias;
 import clases.CategoriasDAO;
+<<<<<<< HEAD
 import clases.ProductosDAO2;
+=======
+import clases.ProductosDAO;
+>>>>>>> branch 'main' of https://github.com/alvarezleiva/Reto3GermanJuan.git
 import util.Functions;
 
 public class Main {
@@ -28,7 +32,7 @@ public class Main {
 						CategoriasDAO.inserta(categoria);
 						break;
 					case 2:
-						// 1.2
+						ProductosDAO.gestionCategorias();
 						break;
 					case 3:
 						// 1.3
@@ -36,7 +40,7 @@ public class Main {
 							option = Functions.dimeEntero("1.3.1- Alta de nuevos clientes\n1.3.2- Busqueda por codigo\n1.3.3- Salir", sc);
 							switch (option) {
 							case 1:
-								// 1.3.1
+							
 								break;
 							case 2:
 								// 1.3.2
