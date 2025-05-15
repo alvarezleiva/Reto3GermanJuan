@@ -14,6 +14,11 @@ import clases.ClientesDAO2;
 
 public class MainGerman {
 	public static void main(String[] args) {
+		busquedaPorCodigo();
+
+	}
+
+	public static void busquedaPorCodigo() {
 		Scanner sc = new Scanner(System.in);
 
 		List<Clientes> list = ClientesDAO2.listaClientes();
@@ -67,6 +72,5 @@ public class MainGerman {
 		}
 
 		sc.close();
-
 	}
 }

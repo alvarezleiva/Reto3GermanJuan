@@ -56,7 +56,7 @@ public class Main {
 				
 								break;
 							case 2:
-								// 1.3.2
+								MainGerman.busquedaPorCodigo();
 								break;
 							}
 						} while (option!=3);
