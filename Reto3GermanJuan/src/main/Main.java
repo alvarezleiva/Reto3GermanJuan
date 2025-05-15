@@ -4,8 +4,12 @@ import java.util.Scanner;
 
 import clases.Categorias;
 import clases.CategoriasDAO;
+
 import clases.Clientes;
 import clases.ClientesDAO;
+
+import clases.ProductosDAO2;
+
 import clases.ProductosDAO;
 import util.Functions;
 
@@ -42,6 +46,8 @@ public class Main {
 								String nombreNuevoCliente = Functions.dimeString("Introduce el nombre del cliente", sc);
 								String direccionNuevoCliente = Functions.dimeString("Introduce la dirección del cliente", sc);
 								int numeroNuevoCliente = Functions.dimeEntero("Introduce su código", sc);
+								
+								
 								Clientes c = new Clientes(nombreNuevoCliente,direccionNuevoCliente, numeroNuevoCliente);
 								
 								ClientesDAO.inserta(c);
@@ -70,7 +76,7 @@ public class Main {
 						break;
 					case 2:
 						// 2.2
-						
+						ProductosDAO2.buscarProductos();
 						break;
 					}
 				} while (option!=3);

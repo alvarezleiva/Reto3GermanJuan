@@ -10,18 +10,63 @@ import clases.Productos;
 import clases.ProductosDAO;
 import util.Functions;
 import clases.ClientesDAO;
+import clases.ClientesDAO2;
 
 public class MainGerman {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-	String nombre = Functions.dimeString("Introduce el nombre del cliente", sc);
-	String direccion = Functions.dimeString("Introduce la dirección del cliente", sc);
-	int numero = Functions.dimeEntero("Introduce su código", sc);
-	Clientes c = new Clientes(nombre,direccion, numero);
-	
-	ClientesDAO.inserta(c);
-	
+		List<Clientes> list = ClientesDAO2.listaClientes();
+		boolean codigoRepetido = true;
+
+		System.out.println("----Código de los clientes----");
+		for (Clientes clientes : list) {
+
+			System.out.println(clientes.getCodigo());
+		}
+		int codigo = Functions.dimeEntero("Introduce el código del cliente", sc);
+		Clientes clienteExiste = null;
+
+		for (Clientes clientes : list) {
+			if (codigo == clientes.getCodigo()) {
+				clienteExiste = clientes;
+				break;
+			}
+		}
+
+		if (clienteExiste != null) {
+			System.out.println("Datos del cliente:");
+			System.out.println(clienteExiste);
+
+			String nombreUpdate = Functions.dimeString("Introduce su nuevo nombre", sc);
+			String direccionUpdate = Functions.dimeString("Introduce su nueva direccion", sc);
+			int codigoUpdate = 0;
+			clienteExiste.setNombre(nombreUpdate);
+			clienteExiste.setDireccion(direccionUpdate);
+
+			do {
+				codigoUpdate = Functions.dimeEntero("Introduce su nuevo codigo", sc);
+				codigoRepetido = false;
+
+				for (Clientes clientes : list) {
+					if (codigoUpdate == clientes.getCodigo()) {
+						System.out.println("Ese codigo existe. Introduce otro");
+						codigoRepetido = true;
+						break;
+					}
+				}
+
+			} while (codigoRepetido);
+			clienteExiste.setCodigo(codigoUpdate);
+
+			ClientesDAO.actualiza(clienteExiste);
+			System.out.println("Cliente actualizado");
+
+		} else {
+			System.out.println("No existe ese cliente");
+		}
+
+		sc.close();
 
 	}
 }

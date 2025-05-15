@@ -31,5 +31,25 @@ public class ClientesDAO {
 		}
 	}
 	
-	
+	public static void actualiza(Clientes cliente)
+	{
+		try {
+			//abro conexion
+			Connection con = SqlConnection.abirConexion();
+			//genero el sql
+			PreparedStatement pst = con.prepareStatement("update clientes set nombre=?, direccion=?, codigo=? where idCliente=?");
+			pst.setString(1,cliente.getNombre());
+			pst.setString(2,cliente.getDireccion());
+			pst.setInt(3, cliente.getCodigo());
+			pst.setInt(4, cliente.getIdCliente());
+			pst.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			SqlConnection.cierraConexion();
+		}
+
+	}
 }
