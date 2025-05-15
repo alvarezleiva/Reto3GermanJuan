@@ -162,7 +162,6 @@ public class Functions {
 		boolean found = false;
 		for (Clientes clientes2 : clientes) {
 			if (clientes2.getCodigo()==cliente.getCodigo()) {
-				cliente=clientes2;
 				return true;
 			}
 		}
@@ -177,6 +176,10 @@ public class Functions {
 			}
 		}
 		return found;
+	}
+	public static java.sql.Date convierteFecha(Date fecha)
+	{
+		return new java.sql.Date(fecha.getTime());
 	}
 
 }

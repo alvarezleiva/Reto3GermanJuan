@@ -1,10 +1,15 @@
 package main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import clases.Categorias;
 import clases.CategoriasDAO;
+import clases.ClientesDAO;
+import clases.ClientesDAO2;
+import clases.Productos;
 import clases.ProductosDAO2;
+import funcionesMain.FuncionesMain;
 import clases.ProductosDAO;
 import util.Functions;
 
@@ -60,7 +65,20 @@ public class Main {
 						break;
 					case 2:
 						// 2.2
-						ProductosDAO2.buscarProductos();
+						String nombre = Functions.dimeString("Dime el nombre del producto (Pulsa enter para saltar)", sc);
+						if (nombre.isBlank()) {
+							nombre = "%";
+						}
+						String talla = Functions.dimeString("Dime la talla del producto (Pulsa enter para saltar)", sc);
+						if (talla.isBlank()) {
+							talla = "%";
+						}
+						String color = Functions.dimeString("Dime el color del producto (Pulsa enter para saltar)", sc);
+						if (color.isBlank()) {
+							color = "%";
+						}
+						List<Productos> listProductos = ProductosDAO2.buscarProductos(nombre,talla,color);
+						Functions.displayProductos(listProductos);
 						break;
 					}
 				} while (option!=3);
@@ -72,7 +90,7 @@ public class Main {
 					switch (option) {
 					case 1:
 						// 3.1
-						
+						FuncionesMain.crearPedido();
 						break;
 					case 2:
 						// 3.2
