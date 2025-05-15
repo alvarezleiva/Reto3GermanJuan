@@ -14,7 +14,24 @@ import clases.ClientesDAO2;
 
 public class MainGerman {
 	public static void main(String[] args) {
-		busquedaPorCodigo();
+
+		Scanner sc = new Scanner(System.in);
+
+		List<Productos> pro = ProductosDAO.bajoStock();
+
+		if (!pro.isEmpty()) {
+			System.out.println("---Productos con stock menor a 5---");
+			int nuevoStock;
+
+			do {
+				nuevoStock = Functions.dimeEntero("¿En cuánto quieres aumentar el stock?", sc);
+			} while (nuevoStock < 0);
+			ProductosDAO.actualizarStock(nuevoStock);
+			System.out.println("Stock actualizado");
+
+		} else {
+			System.out.println("No hay ningún producto con un stock menor a 5");
+		}
 
 	}
 
@@ -73,4 +90,5 @@ public class MainGerman {
 
 		sc.close();
 	}
+
 }
