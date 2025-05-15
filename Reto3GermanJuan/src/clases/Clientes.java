@@ -38,6 +38,12 @@ public class Clientes {
 		this.codigo = codigo;
 	}
 
+	public Clientes(String nombre, String direccion, int codigo) {
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.codigo = codigo;
+	}
+
 	public Clientes(int idCliente, String nombre, String direccion, int codigo) {
 		this.idCliente = idCliente;
 		this.nombre = nombre;

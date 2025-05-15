@@ -46,8 +46,6 @@ public class ProductosDAO {
 		}
 	}
 
-
-
 	public static void displayProductos(Categorias categoria) {
 		try {
 			int idCategoria = categoria.getIdCategoria();
@@ -91,7 +89,6 @@ public class ProductosDAO {
 		}
 		return productos;
 	}
-	
 	public static void gestionCategorias() {
 		Scanner sc = new Scanner(System.in);
 
@@ -124,5 +121,57 @@ public class ProductosDAO {
 		} while (!existe);
 
 		ProductosDAO.gestionProductos(pro);
+	}
+
+	public static List<Productos> bajoStock() {
+
+		List<Productos> productos = new ArrayList<>();
+		try {
+			int stock = 5;
+
+			Connection con = SqlConnection.abirConexion();
+			PreparedStatement ps = con.prepareStatement(
+					"select p.nombre,p.idcategoria, p.precio,p.descripcion,p.color,p.talla,p.stock from productos p\r\n"
+							+ "inner join categorias c on c.idcategoria = p.idcategoria\r\n" + "where stock <?");
+			ps.setInt(1, stock);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Productos producto = new Productos(new Categorias(rs.getInt("idcategoria"), null),
+						rs.getString("nombre"), rs.getDouble("precio"), rs.getString("descripcion"),
+						rs.getString("color"), rs.getString("talla"), rs.getInt("stock"));
+				productos.add(producto);
+			}
+			
+			for (Productos productos2 : productos) {
+				System.out.println(productos2.toString());
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productos;
+
+	}
+
+	public static void actualizarStock(int stock) {
+		try {
+
+			int minimo = 5;
+			// abro conexion
+			Connection con = SqlConnection.abirConexion();
+			// genero el sql
+			PreparedStatement pst = con
+					.prepareStatement("update productos\r\n" + "set stock = stock + ?\r\n" + "where stock <=?");
+			pst.setInt(1, stock);
+			pst.setInt(2, minimo);
+			pst.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			SqlConnection.cierraConexion();
+		}
+
 	}
 }
