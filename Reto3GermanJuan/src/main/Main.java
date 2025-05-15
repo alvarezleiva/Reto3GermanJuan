@@ -4,15 +4,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import clases.Categorias;
-import clases.CategoriasDAO;
-import clases.ClientesDAO;
-import clases.ClientesDAO2;
 import clases.Productos;
 import clases.Clientes;
-import clases.ClientesDAO;
-import clases.ProductosDAO2;
+import clasesDAO.CategoriasDAO;
+import clasesDAO.ClientesDAO;
+import clasesDAO.ClientesDAO2;
+import clasesDAO.ProductosDAO;
+import clasesDAO.ProductosDAO2;
 import funcionesMain.FuncionesMain;
-import clases.ProductosDAO;
 import util.Functions;
 
 public class Main {
@@ -61,7 +60,7 @@ public class Main {
 
 								break;
 							case 2:
-								MainGerman.busquedaPorCodigo();
+								funcionesMain.FuncionesMain.busquedaPorCodigo();
 								break;
 							}
 						} while (option != 3);
@@ -124,6 +123,7 @@ public class Main {
 					switch (option) {
 					case 1:
 						// 4.1
+						funcionesMain.FuncionesMain.bajoStock();
 
 						break;
 					case 2:

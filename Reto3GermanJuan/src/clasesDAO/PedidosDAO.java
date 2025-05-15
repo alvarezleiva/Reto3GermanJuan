@@ -1,4 +1,4 @@
-package clases;
+package clasesDAO;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
+import clases.Pedidos;
 import util.Functions;
 import util.SqlConnection;
 
