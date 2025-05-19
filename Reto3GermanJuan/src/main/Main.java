@@ -107,7 +107,7 @@ public class Main {
 					switch (option) {
 					case 1:
 						// 3.1
-						FuncionesMain.crearPedido();
+						FuncionesMain.crearPedido(sc);
 						break;
 					case 2:
 						// 3.2

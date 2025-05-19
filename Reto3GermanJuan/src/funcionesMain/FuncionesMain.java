@@ -17,9 +17,8 @@ import util.Functions;
 public class FuncionesMain {
 	
 	
-	public static void crearPedido() {
+	public static void crearPedido(Scanner sc) {
 		List<Clientes> clientes = ClientesDAO2.listaClientes();
-		Scanner sc = new Scanner(System.in);
 		Clientes cliente = new Clientes();
 		boolean found = false;
 		do {
@@ -101,5 +100,8 @@ public class FuncionesMain {
 			}
 			System.out.println("Annadido con exito");
 		}
+	}
+	public static void verPedidos () {
+		List<Pedidos> pedidos = PedidosDAO.getPedidos(0);
 	}
 }
