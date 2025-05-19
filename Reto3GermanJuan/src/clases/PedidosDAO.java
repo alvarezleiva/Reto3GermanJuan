@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import util.Functions;
 import util.SqlConnection;
@@ -29,6 +31,23 @@ public class PedidosDAO {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	public static List<Pedidos> getPedidos(int nMes) {
+		try {
+			List<Pedidos> pedidosList = new ArrayList<>();
+			Connection con =  SqlConnection.abirConexion();
+			PreparedStatement ps = con.prepareStatement("select idpedido,idcliente,preciototal,direccionenvio,fecha from pedidos where month(fecha)=?");
+			ps.setInt(1, nMes);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Pedidos pedidos = new Pedidos(rs.getInt(1), new Clientes(rs.getInt(2), null, null, 0), rs.getDouble(3), rs.getString(4), rs.getDate(5));
+				pedidosList.add(pedidos);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
