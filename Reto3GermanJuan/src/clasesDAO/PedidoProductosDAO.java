@@ -1,9 +1,10 @@
-package clases;
+package clasesDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import clases.PedidoProducto;
 import util.SqlConnection;
 
 public class PedidoProductosDAO {

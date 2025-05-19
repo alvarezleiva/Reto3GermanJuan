@@ -1,4 +1,4 @@
-package clases;
+package clasesDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
 
+import clases.Categorias;
+import clases.Productos;
 import util.Functions;
 import util.SqlConnection;
 

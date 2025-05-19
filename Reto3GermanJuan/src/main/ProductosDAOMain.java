@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import clases.Categorias;
-import clases.CategoriasDAO;
 import clases.Productos;
-import clases.ProductosDAO;
+import clasesDAO.CategoriasDAO;
+import clasesDAO.ProductosDAO;
 import util.Functions;
 
 public class ProductosDAOMain {

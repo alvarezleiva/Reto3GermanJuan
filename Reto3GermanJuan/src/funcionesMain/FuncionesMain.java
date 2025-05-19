@@ -3,15 +3,12 @@ package funcionesMain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import clasesDAO.*;
 import clases.Clientes;
-import clases.ClientesDAO2;
 import clases.PedidoProducto;
-import clases.PedidoProductosDAO;
 import clases.Pedidos;
 import clases.PedidosDAO;
 import clases.Productos;
-import clases.ProductosDAO;
 import util.Functions;
 
 public class FuncionesMain {
@@ -101,7 +98,7 @@ public class FuncionesMain {
 			System.out.println("Annadido con exito");
 		}
 	}
-	public static void verPedidos () {
-		List<Pedidos> pedidos = PedidosDAO.getPedidos(0);
+	public static verPedidos () {
+		
 	}
 }
