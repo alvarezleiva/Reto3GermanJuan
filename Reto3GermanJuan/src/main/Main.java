@@ -38,6 +38,7 @@ public class Main {
 						CategoriasDAO.inserta(categoria);
 						break;
 					case 2:
+						// 1.2
 						ProductosDAO.gestionCategorias();
 						break;
 					case 3:
