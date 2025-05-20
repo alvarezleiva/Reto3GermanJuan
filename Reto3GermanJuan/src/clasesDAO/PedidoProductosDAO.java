@@ -53,5 +53,29 @@ public class PedidoProductosDAO {
 		}
 		return pp;
 	}
+	public static List<PedidoProducto> getPedidoProductos() {
+		List<PedidoProducto> pp = null;
+		try {
+			Connection con = SqlConnection.abirConexion();
+			PreparedStatement ps = con.prepareStatement("select  categorias.nombre,productos.nombre,pedidoproducto.unidades,productos.stock  from pedidoproducto\r\n"
+					+ "inner join productos on pedidoproducto.idproducto = productos.idproducto\r\n"
+					+ "inner join categorias on productos.idcategoria = categorias.idcategoria");
+			ResultSet rs = ps.executeQuery();
+			pp = new ArrayList<>();
+			while (rs.next()) {
+				Productos productos = new Productos();
+				Categorias categorias = new Categorias(0, rs.getString(1));
+				productos.setNombre(rs.getString(2));
+				productos.setIdcategoria(categorias);
+				productos.setStock(rs.getInt(4));
+				pp.add(new PedidoProducto(0, null, productos, rs.getInt(3), 0));
+			}
+			con.close();
+			return pp;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pp;
+	}
 	
 }

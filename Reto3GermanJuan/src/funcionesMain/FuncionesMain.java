@@ -49,12 +49,10 @@ public class FuncionesMain {
 					}
 				}
 				found = Functions.searchProductoNombre(productos, producto);
+				productos.remove(producto);
 				if (!found)
 					System.out.println("Introduce un producto valido");
-				else if (pedidoProductos.contains(pedidoProducto)) {
-					System.out.println("Introduce un producto distinto");
-				}
-			} while (!found || pedidoProductos.contains(pedidoProducto));
+			} while (!found);
 			if (!nombre.isBlank()) {
 				unidades = Functions.dimeEntero("Cuantas unidades quieres?", sc);
 				while (unidades < 1) {
@@ -65,13 +63,14 @@ public class FuncionesMain {
 					pedidoProducto.setUnidades(producto.getStock());
 					unidades = producto.getStock();
 				} else
-					pedidoProducto.setUnidades(unidades);
+				pedidoProducto.setUnidades(unidades);
 				pedidoProducto.setIdproducto(producto);
 				pedidoProducto.setIdpedido(new Pedidos());
 				pedidoProducto.getIdpedido().setIdCliente(cliente);
 				pedidoProductos.add(pedidoProducto);
 			}
 		} while (!nombre.isBlank());
+		double total=0;
 		if (pedidoProductos.size() >= 1) {
 			String direccion = Functions
 					.dimeString("Su direccion es: " + cliente.getDireccion() + ". Desea cambiarla? (Si/No)", sc);
@@ -87,6 +86,7 @@ public class FuncionesMain {
 				}
 			}
 			for (PedidoProducto pedidoProducto2 : pedidoProductos) {
+				total+=pedidoProducto.getIdproducto().getPrecio() * unidades;
 				pedidoProducto2.getIdpedido().setIdCliente(cliente);
 				pedidoProducto2.getIdpedido().setPrecioTotal(pedidoProducto.getIdproducto().getPrecio() * unidades);
 				pedidoProducto2.setPrecio(pedidoProducto.getIdproducto().getPrecio() * unidades);
@@ -94,7 +94,7 @@ public class FuncionesMain {
 				pedidoProducto2.getIdpedido().setIdPedido(idPedido);
 				PedidoProductosDAO.insertPedidoProductos(pedidoProducto2);
 			}
-			System.out.println("Annadido con exito");
+			System.out.println("Annadido con exito. El total de su compra es: "+total+" Euros");
 		}
 	}
 

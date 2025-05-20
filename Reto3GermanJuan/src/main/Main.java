@@ -140,7 +140,7 @@ public class Main {
 						break;
 					case 3:
 						// 4.3
-
+						FuncionesMain2.productosMasVendidos();
 						break;
 					}
 				} while (option != 3);
