@@ -123,22 +123,8 @@ public class FuncionesMain {
 		Scanner sc = new Scanner(System.in);
 
 		List<Clientes> list = ClientesDAO2.listaClientes();
-		boolean codigoRepetido = true;
-
-		System.out.println("----Código de los clientes----");
-		for (Clientes clientes : list) {
-
-			System.out.println(clientes.getCodigo());
-		}
-		int codigo = Functions.dimeEntero("Introduce el código del cliente", sc);
-		Clientes clienteExiste = null;
-
-		for (Clientes clientes : list) {
-			if (codigo == clientes.getCodigo()) {
-				clienteExiste = clientes;
-				break;
-			}
-		}
+		boolean codigoRepetido;
+		Clientes clienteExiste = validarCliente(sc, list);
 
 		if (clienteExiste != null) {
 			System.out.println("Datos del cliente:");
@@ -174,9 +160,33 @@ public class FuncionesMain {
 
 	}
 
+	public static Clientes validarCliente(Scanner sc, List<Clientes> list) {
+		boolean codigoRepetido = true;
 
+		System.out.println("----Código de los clientes----");
+		for (Clientes clientes : list) {
 
-	public static verPedidos () {
-		
+			System.out.println(clientes.getCodigo());
+		}
+		int codigo = Functions.dimeEntero("Introduce el código del cliente", sc);
+		Clientes clienteExiste = null;
+
+		for (Clientes clientes : list) {
+			if (codigo == clientes.getCodigo()) {
+				clienteExiste = clientes;
+				break;
+			}
+		}
+		return clienteExiste;
+	}
+
+	public static void pedidosPorCliente() {
+
+		Scanner sc = new Scanner(System.in);
+
+		List<Clientes> list = ClientesDAO2.listaClientes();
+		boolean codigoRepetido;
+		Clientes clienteExiste = validarCliente(sc, list);
+
 	}
 }
