@@ -32,7 +32,11 @@ public class Main {
 					switch (option) {
 					case 1:
 						// 1.1
-						String nombre = Functions.dimeString("Dime el nombre de la categoria", sc);
+						
+						String nombre;
+						do{
+							nombre = Functions.dimeString("Dime el nombre de la categoria", sc);
+						}while(nombre.equals(""));
 						Categorias categoria = new Categorias();
 						categoria.setNombre(nombre);
 
@@ -64,6 +68,7 @@ public class Main {
 							case 2:
 								funcionesMain.FuncionesMain.busquedaPorCodigo();
 								break;
+								
 							}
 						} while (option != 3);
 						break;
@@ -83,7 +88,8 @@ public class Main {
 						break;
 					case 2:
 						// 2.2
-						String nombre = Functions.dimeString("Dime el nombre del producto (Pulsa enter para saltar)", sc);
+						String nombre = Functions.dimeString("Dime el nombre del producto (Pulsa enter para saltar)",
+								sc);
 						if (nombre.isBlank()) {
 							nombre = "%";
 						}
@@ -95,7 +101,7 @@ public class Main {
 						if (color.isBlank()) {
 							color = "%";
 						}
-						List<Productos> listProductos = ProductosDAO2.buscarProductos(nombre,talla,color);
+						List<Productos> listProductos = ProductosDAO2.buscarProductos(nombre, talla, color);
 						Functions.displayProductos(listProductos);
 						break;
 					}

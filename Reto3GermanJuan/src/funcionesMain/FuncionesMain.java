@@ -171,7 +171,6 @@ public class FuncionesMain {
 			System.out.println("No existe ese cliente");
 		}
 
-		sc.close();
 	}
 
 }
