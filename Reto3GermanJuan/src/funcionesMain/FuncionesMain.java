@@ -7,7 +7,6 @@ import clasesDAO.*;
 import clases.Clientes;
 import clases.PedidoProducto;
 import clases.Pedidos;
-import clases.PedidosDAO;
 import clases.Productos;
 import util.Functions;
 
@@ -175,9 +174,4 @@ public class FuncionesMain {
 		sc.close();
 	}
 
-
-
-	public static verPedidos () {
-		
-	}
 }

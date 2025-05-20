@@ -38,5 +38,6 @@ public class ProductosDAO2 {
 		}
 		return productos;
 	}
+	
 
 }

@@ -49,6 +49,11 @@ public class Pedidos {
 		this.fecha = fecha;
 	}
 
+	public Pedidos(int idPedido) {
+		super();
+		this.idPedido = idPedido;
+	}
+
 	public Pedidos(int idPedido, Clientes idCliente, double precioTotal, String direccionEnvio, Date fecha) {
 		this.idPedido = idPedido;
 		this.idCliente = idCliente;
