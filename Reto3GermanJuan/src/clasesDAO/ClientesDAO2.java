@@ -29,4 +29,20 @@ public class ClientesDAO2 {
 		}
 		return list;
 	}
+	public static Clientes getCliente(int idCliente) {
+		Clientes cliente =null;
+		try {
+			Connection con = SqlConnection.abirConexion();
+			PreparedStatement ps = con.prepareStatement("SELECT idcliente,nombre,direccion,codigo from clientes where idcliente = ?");
+			ps.setInt(1, idCliente);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				cliente= new Clientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cliente;
+	}
 }

@@ -4,9 +4,20 @@ import java.sql.Date;
 
 public class Pedidos {
 	private int idPedido;
+	public Pedidos(double precioTotal, String direccionEnvio, Date fecha) {
+		this.precioTotal = precioTotal;
+		this.direccionEnvio = direccionEnvio;
+		this.fecha = fecha;
+	}
+
 	private Clientes idCliente;
 	private double precioTotal;
 	private String direccionEnvio;
+	public Pedidos(String direccionEnvio, Date fecha) {
+		this.direccionEnvio = direccionEnvio;
+		this.fecha = fecha;
+	}
+
 	private Date fecha;
 
 	public int getIdPedido() {
@@ -47,6 +58,11 @@ public class Pedidos {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public Pedidos(int idPedido) {
+		super();
+		this.idPedido = idPedido;
 	}
 
 	public Pedidos(int idPedido, Clientes idCliente, double precioTotal, String direccionEnvio, Date fecha) {

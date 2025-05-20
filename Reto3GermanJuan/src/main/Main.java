@@ -12,6 +12,7 @@ import clasesDAO.ClientesDAO2;
 import clasesDAO.ProductosDAO;
 import clasesDAO.ProductosDAO2;
 import funcionesMain.FuncionesMain;
+import funcionesMain.FuncionesMain2;
 import util.Functions;
 
 public class Main {
@@ -117,7 +118,7 @@ public class Main {
 						break;
 					case 2:
 						// 3.2
-
+						FuncionesMain2.verPedidos();
 						break;
 					}
 				} while (option != 3);
@@ -135,7 +136,7 @@ public class Main {
 						break;
 					case 2:
 						// 4.2
-
+						funcionesMain.FuncionesMain.pedidosPorCliente();
 						break;
 					case 3:
 						// 4.3

@@ -18,6 +18,10 @@ public class Clientes {
 		return nombre;
 	}
 
+	public Clientes(int codigo) {
+		this.codigo = codigo;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

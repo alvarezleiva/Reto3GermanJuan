@@ -34,4 +34,8 @@ public class Categorias {
 		return "categorias [idCategoria=" + idCategoria + ", nombre=" + nombre + "]";
 	}
 
+	public Categorias(String nombre) {
+		this.nombre = nombre;
+	}
+
 }
