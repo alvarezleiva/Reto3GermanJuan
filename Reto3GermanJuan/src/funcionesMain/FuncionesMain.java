@@ -235,7 +235,7 @@ public class FuncionesMain {
 
 	public static void productosMasVendidos() {
 		List<PedidoProducto> pps = PedidoProductosDAO.getPedidoProductos();
-		if (pps != null) {
+		if (!pps.isEmpty()) {
 			List<PedidoProducto> pMas = new ArrayList<>();
 			pps.sort(null);
 			PedidoProducto pp = pps.getFirst();
