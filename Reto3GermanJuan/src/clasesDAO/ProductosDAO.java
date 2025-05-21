@@ -103,7 +103,7 @@ public class ProductosDAO {
 
 		Productos pro = new Productos(nombre, precio, descripcion, color, talla, stock);
 
-		List<Categorias> list = CategoriasDAO.displayCategoriasLista();
+		List<Categorias> list = CategoriasDAO.getCategorias();
 		boolean existe = false;
 		for (Categorias categorias : list) {
 			System.out.println(categorias.toString());

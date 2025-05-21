@@ -15,6 +15,10 @@ import util.Functions;
 import util.SqlConnection;
 
 public class CategoriasDAO {
+	/**
+	 * 
+	 * @param categoria Categorias, se inserta en la bbdd
+	 */
 	public static void inserta(Categorias categoria) {
 		try {
 			// abro conexion
@@ -36,21 +40,9 @@ public class CategoriasDAO {
 		}
 	}
 
-	public static void displayCategorias() {
-		try {
-			Connection con = SqlConnection.abirConexion();
-			PreparedStatement ps = con.prepareStatement("Select idcategoria,nombre from categorias");
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				System.out.println("Id: " + rs.getInt(1) + " Nombre: " + rs.getString(2));
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
-	public static List<Categorias> displayCategoriasLista() {
+	
+	public static List<Categorias> getCategorias() {
 		List<Categorias> listaCategorias = new ArrayList<>();
 		try {
 			Connection con = SqlConnection.abirConexion();
@@ -66,11 +58,6 @@ public class CategoriasDAO {
 		return listaCategorias;
 	}
 
-	public static void listarProductosPorCategorias() {
-		Scanner sc = new Scanner(System.in);
-		displayCategorias();
-		int id = Functions.dimeEntero("Selecciona una categoria", sc);
-		ProductosDAO.displayProductos(new Categorias(id, null));
-	}
+	
 
 }

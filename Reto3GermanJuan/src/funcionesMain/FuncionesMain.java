@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import clasesDAO.*;
+import clases.Categorias;
 import clases.Clientes;
 import clases.PedidoProducto;
 import clases.Pedidos;
@@ -236,7 +237,7 @@ public class FuncionesMain {
 
 	public static void productosMasVendidos() {
 		List<PedidoProducto> pps = PedidoProductosDAO.getPedidoProductos();
-		if (pps != null) {
+		if (!pps.isEmpty()) {
 			List<PedidoProducto> pMas = new ArrayList<>();
 			pps.sort(null);
 			PedidoProducto pp = pps.getFirst();
@@ -261,5 +262,12 @@ public class FuncionesMain {
 		} else
 			System.out.println("No hay pedidos registrados");
 
+	}
+	
+	public static void listarProductosPorCategorias() {
+		Scanner sc = new Scanner(System.in);
+		Functions.displayCategorias();
+		int id = Functions.dimeEntero("Selecciona una categoria", sc);
+		ProductosDAO.displayProductos(new Categorias(id, null));
 	}
 }

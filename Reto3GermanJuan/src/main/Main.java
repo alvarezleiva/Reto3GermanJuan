@@ -84,7 +84,7 @@ public class Main {
 					switch (option) {
 					case 1:
 						// 2.1
-						CategoriasDAO.listarProductosPorCategorias();
+						FuncionesMain.listarProductosPorCategorias();
 						break;
 					case 2:
 						// 2.2
