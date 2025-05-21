@@ -48,7 +48,8 @@ public class ProductosDAO {
 		}
 	}
 
-	public static void displayProductos(Categorias categoria) {
+	public static List<Productos> getProductos(Categorias categoria) {
+		List<Productos> productos;
 		try {
 			int idCategoria = categoria.getIdCategoria();
 			Connection con = SqlConnection.abirConexion();
@@ -56,7 +57,7 @@ public class ProductosDAO {
 					"Select idproducto, idcategoria, nombre, precio, descripcion, color, talla, stock  from productos where idcategoria = ?");
 			ps.setInt(1, idCategoria);
 			ResultSet rs = ps.executeQuery();
-			List<Productos> productos = new ArrayList<>();
+			productos = new ArrayList<>();
 			if (!rs.next())
 				System.out.println("La categoria introducida no tiene productos o no extiste");
 			while (rs.next()) {
@@ -64,13 +65,12 @@ public class ProductosDAO {
 						rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
 				productos.add(producto);
 			}
-			for (Productos productos2 : productos) {
-				System.out.println(productos2.toString());
-			}
 			con.close();
+			return productos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	public static List<Productos> listProductos() {
 		List<Productos> productos = null;

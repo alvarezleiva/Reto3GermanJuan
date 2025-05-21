@@ -229,8 +229,8 @@ public class Productos {
 
 	@Override
 	public String toString() {
-		return "[idcategoria" + idcategoria.getIdCategoria() + ", nombre=" + nombre + ", precio=" + precio
-				+ ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla + ", stock=" + stock + "]";
+		return "Categoria: " + idcategoria.getNombre() + ", producto: " + nombre + ", precio: " + precio
+				+ ", descripcion: " + descripcion + ", color: " + color + ", talla: " + talla + ", stock: " + stock;
 	}
 
 }

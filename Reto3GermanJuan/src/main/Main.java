@@ -53,7 +53,6 @@ public class Main {
 									"1.3.1- Alta de nuevos clientes\n1.3.2- Busqueda por codigo\n1.3.3- Salir", sc);
 							switch (option) {
 							case 1:
-
 								String nombreNuevoCliente = Functions.dimeString("Introduce el nombre del cliente", sc);
 								String direccionNuevoCliente = Functions
 										.dimeString("Introduce la dirección del cliente", sc);
@@ -92,6 +91,8 @@ public class Main {
 								sc);
 						if (nombre.isBlank()) {
 							nombre = "%";
+						}else {
+							nombre="%"+nombre+"%";
 						}
 						String talla = Functions.dimeString("Dime la talla del producto (Pulsa enter para saltar)", sc);
 						if (talla.isBlank()) {

@@ -13,8 +13,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import clases.Categorias;
 import clases.Clientes;
 import clases.Productos;
+import clasesDAO.CategoriasDAO;
 
 public class Functions {
 	// indica si el String que recibe como parametro es entero
@@ -157,32 +159,43 @@ public class Functions {
 		java.util.Date d = Date.from(fLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		return new Date(d.getTime());
 	}
+
 	public static void displayProductos(List<Productos> productos) {
+		List<Categorias> categorias = CategoriasDAO.getCategorias();
 		for (Productos productos2 : productos) {
+			for (Categorias categorias2 : categorias) {
+				if (productos2.getIdcategoria().getIdCategoria()==categorias2.getIdCategoria()) {
+					productos2.getIdcategoria().setNombre(categorias2.getNombre());;
+					break;
+				}
+			}
 			System.out.println(productos2.toString());
 		}
 	}
+
 	public static boolean searchClienteCodigo(List<Clientes> clientes, Clientes cliente) {
 		boolean found = false;
 		for (Clientes clientes2 : clientes) {
-			if (clientes2.getCodigo()==cliente.getCodigo()) {
+			if (clientes2.getCodigo() == cliente.getCodigo()) {
 				return true;
 			}
 		}
 		return found;
 	}
-	public static boolean searchProductoNombre(List<Productos> productos,Productos producto) {
+
+	public static boolean searchProductoNombre(List<Productos> productos, Productos producto) {
 		boolean found = false;
 		for (Productos productos2 : productos) {
 			if (productos2.getNombre().trim().equalsIgnoreCase(producto.getNombre().trim())) {
-				producto=productos2;
+				producto = productos2;
 				return true;
 			}
 		}
 		return found;
 	}
-public static void displayCategorias() {
-		
+
+	public static void displayCategorias() {
+
 		try {
 			Connection con = SqlConnection.abirConexion();
 			PreparedStatement ps = con.prepareStatement("Select idcategoria,nombre from categorias");
@@ -195,8 +208,8 @@ public static void displayCategorias() {
 			e.printStackTrace();
 		}
 	}
-	public static java.sql.Date convierteFecha(Date fecha)
-	{
+
+	public static java.sql.Date convierteFecha(Date fecha) {
 		return new java.sql.Date(fecha.getTime());
 	}
 

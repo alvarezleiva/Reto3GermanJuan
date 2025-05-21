@@ -87,14 +87,17 @@ public class FuncionesMain {
 							.setDireccionEnvio(pedidoProducto2.getIdpedido().getIdCliente().getDireccion());
 				}
 			}
+			int i=0,idPedido = 0;
 			for (PedidoProducto pedidoProducto2 : pedidoProductos) {
 				total += pedidoProducto.getIdproducto().getPrecio() * unidades;
 				pedidoProducto2.getIdpedido().setIdCliente(cliente);
 				pedidoProducto2.getIdpedido().setPrecioTotal(pedidoProducto.getIdproducto().getPrecio() * unidades);
 				pedidoProducto2.setPrecio(pedidoProducto.getIdproducto().getPrecio() * unidades);
-				int idPedido = PedidosDAO.insertPedido(pedidoProducto2.getIdpedido());
+				if(i<1)
+					idPedido = PedidosDAO.insertPedido(pedidoProducto2.getIdpedido());
 				pedidoProducto2.getIdpedido().setIdPedido(idPedido);
 				PedidoProductosDAO.insertPedidoProductos(pedidoProducto2);
+				i++;
 			}
 			System.out.println("Annadido con exito. El total de su compra es: " + total + " Euros");
 		}
@@ -164,7 +167,7 @@ public class FuncionesMain {
 	public static Clientes validarCliente(Scanner sc, List<Clientes> list) {
 		boolean codigoRepetido = true;
 
-		System.out.println("----Código de los clientes----");
+		System.out.println("----Codigo de los clientes----");
 		for (Clientes clientes : list) {
 
 			System.out.println(clientes.getCodigo());
@@ -268,6 +271,7 @@ public class FuncionesMain {
 		Scanner sc = new Scanner(System.in);
 		Functions.displayCategorias();
 		int id = Functions.dimeEntero("Selecciona una categoria", sc);
-		ProductosDAO.displayProductos(new Categorias(id, null));
+		List<Productos> productos = ProductosDAO.getProductos(new Categorias(id, null));
+		Functions.displayProductos(productos);
 	}
 }
