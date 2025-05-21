@@ -8,11 +8,11 @@ import clases.Productos;
 import clases.Clientes;
 import clasesDAO.CategoriasDAO;
 import clasesDAO.ClientesDAO;
-import clasesDAO.ClientesDAO2;
+
 import clasesDAO.ProductosDAO;
-import clasesDAO.ProductosDAO2;
+
 import funcionesMain.FuncionesMain;
-import funcionesMain.FuncionesMain2;
+
 import util.Functions;
 
 public class Main {
@@ -101,7 +101,7 @@ public class Main {
 						if (color.isBlank()) {
 							color = "%";
 						}
-						List<Productos> listProductos = ProductosDAO2.buscarProductos(nombre, talla, color);
+						List<Productos> listProductos = ProductosDAO.buscarProductos(nombre, talla, color);
 						Functions.displayProductos(listProductos);
 						break;
 					}
@@ -118,7 +118,7 @@ public class Main {
 						break;
 					case 2:
 						// 3.2
-						FuncionesMain2.verPedidos();
+						FuncionesMain.verPedidos();
 						break;
 					}
 				} while (option != 3);
@@ -140,7 +140,7 @@ public class Main {
 						break;
 					case 3:
 						// 4.3
-
+						FuncionesMain.productosMasVendidos();
 						break;
 					}
 				} while (option != 3);

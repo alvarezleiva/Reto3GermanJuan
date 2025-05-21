@@ -1,5 +1,6 @@
 package funcionesMain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import util.Functions;
 public class FuncionesMain {
 
 	public static void crearPedido(Scanner sc) {
-		List<Clientes> clientes = ClientesDAO2.listaClientes();
+		List<Clientes> clientes = ClientesDAO.listaClientes();
 		Clientes cliente = new Clientes();
 		boolean found = false;
 		do {
@@ -49,12 +50,10 @@ public class FuncionesMain {
 					}
 				}
 				found = Functions.searchProductoNombre(productos, producto);
+				productos.remove(producto);
 				if (!found)
 					System.out.println("Introduce un producto valido");
-				else if (pedidoProductos.contains(pedidoProducto)) {
-					System.out.println("Introduce un producto distinto");
-				}
-			} while (!found || pedidoProductos.contains(pedidoProducto));
+			} while (!found);
 			if (!nombre.isBlank()) {
 				unidades = Functions.dimeEntero("Cuantas unidades quieres?", sc);
 				while (unidades < 1) {
@@ -65,13 +64,14 @@ public class FuncionesMain {
 					pedidoProducto.setUnidades(producto.getStock());
 					unidades = producto.getStock();
 				} else
-					pedidoProducto.setUnidades(unidades);
+				pedidoProducto.setUnidades(unidades);
 				pedidoProducto.setIdproducto(producto);
 				pedidoProducto.setIdpedido(new Pedidos());
 				pedidoProducto.getIdpedido().setIdCliente(cliente);
 				pedidoProductos.add(pedidoProducto);
 			}
 		} while (!nombre.isBlank());
+		double total=0;
 		if (pedidoProductos.size() >= 1) {
 			String direccion = Functions
 					.dimeString("Su direccion es: " + cliente.getDireccion() + ". Desea cambiarla? (Si/No)", sc);
@@ -87,6 +87,7 @@ public class FuncionesMain {
 				}
 			}
 			for (PedidoProducto pedidoProducto2 : pedidoProductos) {
+				total+=pedidoProducto.getIdproducto().getPrecio() * unidades;
 				pedidoProducto2.getIdpedido().setIdCliente(cliente);
 				pedidoProducto2.getIdpedido().setPrecioTotal(pedidoProducto.getIdproducto().getPrecio() * unidades);
 				pedidoProducto2.setPrecio(pedidoProducto.getIdproducto().getPrecio() * unidades);
@@ -94,7 +95,7 @@ public class FuncionesMain {
 				pedidoProducto2.getIdpedido().setIdPedido(idPedido);
 				PedidoProductosDAO.insertPedidoProductos(pedidoProducto2);
 			}
-			System.out.println("Annadido con exito");
+			System.out.println("Annadido con exito. El total de su compra es: "+total+" Euros");
 		}
 	}
 
@@ -121,7 +122,7 @@ public class FuncionesMain {
 	public static void busquedaPorCodigo() {
 		Scanner sc = new Scanner(System.in);
 
-		List<Clientes> list = ClientesDAO2.listaClientes();
+		List<Clientes> list = ClientesDAO.listaClientes();
 		boolean codigoRepetido;
 		Clientes clienteExiste = validarCliente(sc, list);
 
@@ -182,7 +183,7 @@ public class FuncionesMain {
 	public static void pedidosPorCliente() {
 		Scanner sc = new Scanner(System.in);
 
-		List<Clientes> list = ClientesDAO2.listaClientes();
+		List<Clientes> list = ClientesDAO.listaClientes();
 		for (Clientes clientes : list) {
 			System.out.println(clientes.getCodigo());
 		}
@@ -211,5 +212,44 @@ public class FuncionesMain {
 			}
 		}
 
+	}
+	public static void verPedidos() {
+		List<Pedidos> pedidos = clasesDAO.PedidosDAO.getPedidos(LocalDate.now().getMonthValue());
+		if (pedidos != null) {
+			System.out.println(
+					"Pedidos de " + LocalDate.now().getMonth().toString() + " de " + LocalDate.now().getYear());
+			for (Pedidos pedidos2 : pedidos) {
+				pedidos2.setIdCliente(ClientesDAO.getCliente(pedidos2.getIdCliente().getIdCliente()));
+				System.out.println("Fecha pedido: " + pedidos2.getFecha() + ", Cliente: "
+						+ pedidos2.getIdCliente().getNombre() + ", Precio total: " + pedidos2.getPrecioTotal()
+						+ ", Direccion:  " + pedidos2.getDireccionEnvio() + "\nProductos:");
+				List<PedidoProducto> pps = PedidoProductosDAO.getPedidoProductos(pedidos2.getIdPedido());
+				for (PedidoProducto pp : pps) {
+					System.out.println(
+							"Categoria: " + pp.getIdproducto().getIdcategoria().getNombre() + ", Nombre producto: "
+									+ pp.getIdproducto().getNombre() + ", Unidades compradas: " + pp.getUnidades());
+				}
+			}
+		}
+	}
+
+	public static void productosMasVendidos() {
+		List<PedidoProducto> pMas = new ArrayList<>();
+		List<PedidoProducto> pps = PedidoProductosDAO.getPedidoProductos();
+		pps.sort(null);
+		PedidoProducto pp = pps.getFirst();
+		pps.remove(pp);
+		while (pp.getUnidades() == pps.getFirst().getUnidades()) {
+			pMas.add(pps.getFirst());
+			pps.remove(pps.getFirst());
+		}
+		if (pMas.size() == 1) {
+			System.out.println("Producto mas vendido: \nCategoria: " + pMas.getFirst().getIdproducto().getIdcategoria().getNombre()
+					+", Nombre: "+ pMas.getFirst().getIdproducto().getNombre() +", Stock: "+ pMas.getFirst().getIdproducto().getStock());
+		}else {for (PedidoProducto pedidoProducto : pMas) {
+			System.out.println("Producto mas vendidos: \nCategoria: " + pedidoProducto.getIdproducto().getIdcategoria().getNombre()
+					+", Nombre: "+ pedidoProducto.getIdproducto().getNombre() +", Stock: "+ pedidoProducto.getIdproducto().getStock());
+		}
+		}
 	}
 }

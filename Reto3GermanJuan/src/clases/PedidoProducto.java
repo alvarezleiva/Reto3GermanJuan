@@ -1,6 +1,6 @@
 package clases;
 
-public class PedidoProducto {
+public class PedidoProducto implements Comparable<PedidoProducto>{	
 	
 		private int idpedidoproducto;
 		private Pedidos idpedido;
@@ -51,6 +51,10 @@ public class PedidoProducto {
 		public String toString() {
 			return "pedidoproducto [idpedidoproducto=" + idpedidoproducto + ", idpedido=" + idpedido + ", idproducto="
 					+ idproducto + ", unidades=" + unidades + ", precio=" + precio + "]";
+		}
+		@Override
+		public int compareTo(PedidoProducto o) {
+			return o.getUnidades()-unidades;
 		}
 		
 		
