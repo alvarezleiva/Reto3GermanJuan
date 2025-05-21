@@ -143,7 +143,7 @@ public class Main {
 						FuncionesMain.productosMasVendidos();
 						break;
 					}
-				} while (option != 3);
+				} while (option != 4);
 				break;
 			}
 		} while (option != 5);

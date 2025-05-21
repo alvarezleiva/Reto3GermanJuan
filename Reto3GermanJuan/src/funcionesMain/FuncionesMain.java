@@ -64,14 +64,14 @@ public class FuncionesMain {
 					pedidoProducto.setUnidades(producto.getStock());
 					unidades = producto.getStock();
 				} else
-				pedidoProducto.setUnidades(unidades);
+					pedidoProducto.setUnidades(unidades);
 				pedidoProducto.setIdproducto(producto);
 				pedidoProducto.setIdpedido(new Pedidos());
 				pedidoProducto.getIdpedido().setIdCliente(cliente);
 				pedidoProductos.add(pedidoProducto);
 			}
 		} while (!nombre.isBlank());
-		double total=0;
+		double total = 0;
 		if (pedidoProductos.size() >= 1) {
 			String direccion = Functions
 					.dimeString("Su direccion es: " + cliente.getDireccion() + ". Desea cambiarla? (Si/No)", sc);
@@ -87,7 +87,7 @@ public class FuncionesMain {
 				}
 			}
 			for (PedidoProducto pedidoProducto2 : pedidoProductos) {
-				total+=pedidoProducto.getIdproducto().getPrecio() * unidades;
+				total += pedidoProducto.getIdproducto().getPrecio() * unidades;
 				pedidoProducto2.getIdpedido().setIdCliente(cliente);
 				pedidoProducto2.getIdpedido().setPrecioTotal(pedidoProducto.getIdproducto().getPrecio() * unidades);
 				pedidoProducto2.setPrecio(pedidoProducto.getIdproducto().getPrecio() * unidades);
@@ -95,7 +95,7 @@ public class FuncionesMain {
 				pedidoProducto2.getIdpedido().setIdPedido(idPedido);
 				PedidoProductosDAO.insertPedidoProductos(pedidoProducto2);
 			}
-			System.out.println("Annadido con exito. El total de su compra es: "+total+" Euros");
+			System.out.println("Annadido con exito. El total de su compra es: " + total + " Euros");
 		}
 	}
 
@@ -213,6 +213,7 @@ public class FuncionesMain {
 		}
 
 	}
+
 	public static void verPedidos() {
 		List<Pedidos> pedidos = clasesDAO.PedidosDAO.getPedidos(LocalDate.now().getMonthValue());
 		if (pedidos != null) {
@@ -235,7 +236,7 @@ public class FuncionesMain {
 
 	public static void productosMasVendidos() {
 		List<PedidoProducto> pps = PedidoProductosDAO.getPedidoProductos();
-		if (!pps.isEmpty()) {
+		if (pps != null) {
 			List<PedidoProducto> pMas = new ArrayList<>();
 			pps.sort(null);
 			PedidoProducto pp = pps.getFirst();
@@ -245,14 +246,19 @@ public class FuncionesMain {
 				pps.remove(pps.getFirst());
 			}
 			if (pMas.size() == 1) {
-				System.out.println("Producto mas vendido: \nCategoria: " + pMas.getFirst().getIdproducto().getIdcategoria().getNombre()
-						+", Nombre: "+ pMas.getFirst().getIdproducto().getNombre() +", Stock: "+ pMas.getFirst().getIdproducto().getStock());
-			}else {for (PedidoProducto pedidoProducto : pMas) {
-				System.out.println("Producto mas vendidos: \nCategoria: " + pedidoProducto.getIdproducto().getIdcategoria().getNombre()
-						+", Nombre: "+ pedidoProducto.getIdproducto().getNombre() +", Stock: "+ pedidoProducto.getIdproducto().getStock());
+				System.out.println("Producto mas vendido: \nCategoria: "
+						+ pMas.getFirst().getIdproducto().getIdcategoria().getNombre() + ", Nombre: "
+						+ pMas.getFirst().getIdproducto().getNombre() + ", Stock: "
+						+ pMas.getFirst().getIdproducto().getStock());
+			} else {
+				for (PedidoProducto pedidoProducto : pMas) {
+					System.out.println("Producto mas vendidos: \nCategoria: "
+							+ pedidoProducto.getIdproducto().getIdcategoria().getNombre() + ", Nombre: "
+							+ pedidoProducto.getIdproducto().getNombre() + ", Stock: "
+							+ pedidoProducto.getIdproducto().getStock());
+				}
 			}
-			}
-		}else
+		} else
 			System.out.println("No hay pedidos registrados");
 
 	}
