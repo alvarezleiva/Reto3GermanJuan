@@ -234,22 +234,26 @@ public class FuncionesMain {
 	}
 
 	public static void productosMasVendidos() {
-		List<PedidoProducto> pMas = new ArrayList<>();
 		List<PedidoProducto> pps = PedidoProductosDAO.getPedidoProductos();
-		pps.sort(null);
-		PedidoProducto pp = pps.getFirst();
-		pps.remove(pp);
-		while (pp.getUnidades() == pps.getFirst().getUnidades()) {
-			pMas.add(pps.getFirst());
-			pps.remove(pps.getFirst());
-		}
-		if (pMas.size() == 1) {
-			System.out.println("Producto mas vendido: \nCategoria: " + pMas.getFirst().getIdproducto().getIdcategoria().getNombre()
-					+", Nombre: "+ pMas.getFirst().getIdproducto().getNombre() +", Stock: "+ pMas.getFirst().getIdproducto().getStock());
-		}else {for (PedidoProducto pedidoProducto : pMas) {
-			System.out.println("Producto mas vendidos: \nCategoria: " + pedidoProducto.getIdproducto().getIdcategoria().getNombre()
-					+", Nombre: "+ pedidoProducto.getIdproducto().getNombre() +", Stock: "+ pedidoProducto.getIdproducto().getStock());
-		}
-		}
+		if (pps != null) {
+			List<PedidoProducto> pMas = new ArrayList<>();
+			pps.sort(null);
+			PedidoProducto pp = pps.getFirst();
+			pps.remove(pp);
+			while (pp.getUnidades() == pps.getFirst().getUnidades()) {
+				pMas.add(pps.getFirst());
+				pps.remove(pps.getFirst());
+			}
+			if (pMas.size() == 1) {
+				System.out.println("Producto mas vendido: \nCategoria: " + pMas.getFirst().getIdproducto().getIdcategoria().getNombre()
+						+", Nombre: "+ pMas.getFirst().getIdproducto().getNombre() +", Stock: "+ pMas.getFirst().getIdproducto().getStock());
+			}else {for (PedidoProducto pedidoProducto : pMas) {
+				System.out.println("Producto mas vendidos: \nCategoria: " + pedidoProducto.getIdproducto().getIdcategoria().getNombre()
+						+", Nombre: "+ pedidoProducto.getIdproducto().getNombre() +", Stock: "+ pedidoProducto.getIdproducto().getStock());
+			}
+			}
+		}else
+			System.out.println("No hay pedidos registrados");
+
 	}
 }
