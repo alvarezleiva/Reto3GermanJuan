@@ -7,7 +7,6 @@ import clasesDAO.*;
 import clases.Clientes;
 import clases.PedidoProducto;
 import clases.Pedidos;
-import clases.PedidosDAO;
 import clases.Productos;
 import util.Functions;
 
@@ -181,12 +180,36 @@ public class FuncionesMain {
 	}
 
 	public static void pedidosPorCliente() {
-
 		Scanner sc = new Scanner(System.in);
 
 		List<Clientes> list = ClientesDAO2.listaClientes();
-		boolean codigoRepetido;
-		Clientes clienteExiste = validarCliente(sc, list);
+		for (Clientes clientes : list) {
+			System.out.println(clientes.getCodigo());
+		}
+		Clientes cliente = new Clientes();
+
+		boolean found = false;
+		do {
+			cliente.setCodigo(Functions.dimeEntero("Introduce un codigo de cliente", sc));
+
+			found = Functions.searchClienteCodigo(list, cliente);
+		} while (!found);
+
+		if (cliente != null) {
+			List<PedidoProducto> prod = PedidoProductosDAO.pedidosPorCliente(cliente.getCodigo());
+
+			if (prod.isEmpty()) {
+				System.out.println("Este cliente no tiene pedidos");
+			} else {
+				for (PedidoProducto pedidoProducto : prod) {
+					System.out.println("direccion envio: " + pedidoProducto.getIdpedido().getDireccionEnvio()
+							+ ", nombre prod: " + pedidoProducto.getIdproducto().getNombre() + ", unidades vendidas: "
+							+ pedidoProducto.getUnidades() + ", precio total: " + pedidoProducto.getPrecio()
+							+ ", fecha: " + pedidoProducto.getIdpedido().getFecha() + ",categoria: "
+							+ pedidoProducto.getIdproducto().getIdcategoria().getNombre());
+				}
+			}
+		}
 
 	}
 }
