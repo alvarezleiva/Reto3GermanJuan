@@ -18,6 +18,7 @@ public class FuncionesMain {
 		List<Clientes> clientes = ClientesDAO.listaClientes();
 		Clientes cliente = new Clientes();
 		boolean found = false;
+		// Valido que introduzca el codigo bien
 		do {
 			int codigo = Functions.dimeEntero("Dime tu codigo de cliente", sc);
 			cliente.setCodigo(codigo);
@@ -37,9 +38,11 @@ public class FuncionesMain {
 		PedidoProducto pedidoProducto = new PedidoProducto();
 		List<PedidoProducto> pedidoProductos = new ArrayList<>();
 		int unidades = 0;
+		double precioTotal=0;
 		do {
-			System.out.println("Escribe el nombre del producto para annadirlo, pulsa enter para acabar");
+			// Valido que introduzca un prodcuto valido
 			do {
+				System.out.println("Escribe el nombre del producto para annadirlo, pulsa enter para acabar");
 				nombre = sc.nextLine();
 				if (nombre.isBlank()) {
 					break;
@@ -47,14 +50,17 @@ public class FuncionesMain {
 				for (Productos productos2 : productos) {
 					if (productos2.getNombre().equalsIgnoreCase(nombre)) {
 						producto = productos2;
+						found=true;
 						break;
 					}
 				}
-				found = Functions.searchProductoNombre(productos, producto);
 				productos.remove(producto);
 				if (!found)
 					System.out.println("Introduce un producto valido");
-			} while (!found);
+				if (producto.getStock()==0)
+					System.out.println("No quedan unidades de ese producto");
+			} while (!found || producto.getStock()==0);
+			// Valido que introduzca una cantidad valida
 			if (!nombre.isBlank()) {
 				unidades = Functions.dimeEntero("Cuantas unidades quieres?", sc);
 				while (unidades < 1) {
@@ -64,20 +70,25 @@ public class FuncionesMain {
 					System.out.println("No tenemos tantas unidades disponibles, se han annadido el maximo posible");
 					pedidoProducto.setUnidades(producto.getStock());
 					unidades = producto.getStock();
-				} else
+				} else {
 					pedidoProducto.setUnidades(unidades);
+				}
+				// Ajusto el nuevo stock del prodcuto
+				ProductosDAO.updateStock(producto.getIdproducto(), unidades);
+				precioTotal+=unidades*producto.getPrecio();
 				pedidoProducto.setIdproducto(producto);
 				pedidoProducto.setIdpedido(new Pedidos());
 				pedidoProducto.getIdpedido().setIdCliente(cliente);
 				pedidoProductos.add(pedidoProducto);
 			}
 		} while (!nombre.isBlank());
-		double total = 0;
+		// Se ejecuta si ha annadido productos
 		if (pedidoProductos.size() >= 1) {
 			String direccion = Functions
 					.dimeString("Su direccion es: " + cliente.getDireccion() + ". Desea cambiarla? (Si/No)", sc);
 			if (direccion.equalsIgnoreCase("si")) {
 				direccion = Functions.dimeString("Introduzca la nueva direccion", sc);
+				// Pongo la direccion en cada pedido producto
 				for (PedidoProducto pedidoProducto2 : pedidoProductos) {
 					pedidoProducto2.getIdpedido().setDireccionEnvio(direccion);
 				}
@@ -88,18 +99,20 @@ public class FuncionesMain {
 				}
 			}
 			int i=0,idPedido = 0;
+			// Inserto los datos a la DB, un pedido y varios pedidoproductos (si hay varios)
 			for (PedidoProducto pedidoProducto2 : pedidoProductos) {
-				total += pedidoProducto.getIdproducto().getPrecio() * unidades;
-				pedidoProducto2.getIdpedido().setIdCliente(cliente);
-				pedidoProducto2.getIdpedido().setPrecioTotal(pedidoProducto.getIdproducto().getPrecio() * unidades);
-				pedidoProducto2.setPrecio(pedidoProducto.getIdproducto().getPrecio() * unidades);
-				if(i<1)
+				pedidoProducto2.setPrecio(pedidoProducto.getIdproducto().getPrecio() * pedidoProducto2.getUnidades());
+				if(i<1) {
+					pedidoProducto2.getIdpedido().setIdCliente(cliente);
+					pedidoProducto2.getIdpedido().setPrecioTotal(precioTotal);
 					idPedido = PedidosDAO.insertPedido(pedidoProducto2.getIdpedido());
+					
+				}
 				pedidoProducto2.getIdpedido().setIdPedido(idPedido);
 				PedidoProductosDAO.insertPedidoProductos(pedidoProducto2);
 				i++;
 			}
-			System.out.println("Annadido con exito. El total de su compra es: " + total + " Euros");
+			System.out.println("Annadido con exito. El total de su compra es: " + Functions.redondea(precioTotal) + " Euros");
 		}
 	}
 

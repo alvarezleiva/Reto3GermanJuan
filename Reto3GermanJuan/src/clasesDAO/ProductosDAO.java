@@ -212,6 +212,7 @@ public class ProductosDAO {
 
 	}
 	
+
 	/**
 	 * 
 	 * @param recibe el nombre por el que queremos buscar al producto
@@ -219,6 +220,7 @@ public class ProductosDAO {
 	 * @param recibe el color por el que queremos buscar el producto
 	 * @return devuelve una lista con los productos filtrados por esas características
 	 */
+
 	public static List<Productos> buscarProductos(String nombre,String talla,String color) {
 		List<Productos> productos = new ArrayList<>();
 		String query = "Select idproducto, idcategoria, nombre, precio, descripcion, color, talla, stock  from productos where nombre like ? and talla like ? and color like ?";
@@ -239,6 +241,26 @@ public class ProductosDAO {
 			e.printStackTrace();
 		}
 		return productos;
+	}
+	/**
+	 * 
+	 * @param recibe el idProducto 
+	 * @param recibe la cantidad a restar el stock
+	 */
+	public static void updateStock(int idProducto,int cantidad) {
+		try {
+			Connection con = SqlConnection.abirConexion();
+			PreparedStatement pst = con
+					.prepareStatement("update productos set stock = stock - ? where idProducto =  ?;");
+			pst.setInt(1, cantidad);
+			pst.setInt(2,idProducto);
+			pst.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			SqlConnection.cierraConexion();
+		}
 	}
 	
 }
