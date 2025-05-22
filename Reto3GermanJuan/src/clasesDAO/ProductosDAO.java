@@ -176,6 +176,7 @@ public class ProductosDAO {
 		}
 
 	}
+	
 	public static List<Productos> buscarProductos(String nombre,String talla,String color) {
 		List<Productos> productos = new ArrayList<>();
 		String query = "Select idproducto, idcategoria, nombre, precio, descripcion, color, talla, stock  from productos where nombre like ? and talla like ? and color like ?";
@@ -196,6 +197,21 @@ public class ProductosDAO {
 			e.printStackTrace();
 		}
 		return productos;
+	}
+	public static void updateStock(int idProducto,int cantidad) {
+		try {
+			Connection con = SqlConnection.abirConexion();
+			PreparedStatement pst = con
+					.prepareStatement("update productos set stock = stock - ? where idProducto =  ?;");
+			pst.setInt(1, cantidad);
+			pst.setInt(2,idProducto);
+			pst.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			SqlConnection.cierraConexion();
+		}
 	}
 	
 }

@@ -111,7 +111,7 @@ public class Main {
 			case 3:
 				// 3
 				do {
-					option = Functions.dimeEntero("3.1- Crear pedido\n 3.2- Ver pedidos\n3.3- Salir", sc);
+					option = Functions.dimeEntero("3.1- Crear pedido\n3.2- Ver pedidos\n3.3- Salir", sc);
 					switch (option) {
 					case 1:
 						// 3.1
