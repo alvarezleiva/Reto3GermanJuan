@@ -17,6 +17,9 @@ import clases.Pedidos;
 import util.Functions;
 import util.SqlConnection;
 
+/**
+ * @author german y juan
+ */
 public class PedidosDAO {
 	
 

@@ -1,6 +1,9 @@
 
 package clases;
 
+/**
+ * @author german y juan
+ */
 public class Productos {
 	private int idproducto;
 	private Categorias idcategoria;

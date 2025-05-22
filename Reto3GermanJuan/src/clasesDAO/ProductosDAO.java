@@ -17,6 +17,10 @@ import clases.Productos;
 import util.Functions;
 import util.SqlConnection;
 
+/**
+ * @author german y juan
+ */
+
 public class ProductosDAO {
 	
 	/**
