@@ -56,7 +56,16 @@ public class Main {
 								String nombreNuevoCliente = Functions.dimeString("Introduce el nombre del cliente", sc);
 								String direccionNuevoCliente = Functions
 										.dimeString("Introduce la dirección del cliente", sc);
+								
+								List<Clientes> lista = ClientesDAO.listaClientes();
 								int numeroNuevoCliente = Functions.dimeEntero("Introduce su código", sc);
+								
+								for (Clientes clientes : lista) {
+									while(clientes.getCodigo() == numeroNuevoCliente) {
+										numeroNuevoCliente = Functions.dimeEntero("Introduce su código", sc);
+
+									}
+								}
 
 								Clientes c = new Clientes(nombreNuevoCliente, direccionNuevoCliente,
 										numeroNuevoCliente);
