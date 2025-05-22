@@ -14,10 +14,13 @@ import clases.Categorias;
 import util.Functions;
 import util.SqlConnection;
 
+/**
+ * @author german y juan
+ */
 public class CategoriasDAO {
 	/**
 	 * 
-	 * @param categoria Categorias, se inserta en la bbdd
+	 * @param categoria recibe la categoria que vamos a insertar en la bbdd
 	 */
 	public static void inserta(Categorias categoria) {
 		try {
@@ -41,6 +44,10 @@ public class CategoriasDAO {
 	}
 
 	
+	/**
+	 * 
+	 * @return devuelve una lista con todas las categorias
+	 */
 	
 	public static List<Categorias> getCategorias() {
 		List<Categorias> listaCategorias = new ArrayList<>();

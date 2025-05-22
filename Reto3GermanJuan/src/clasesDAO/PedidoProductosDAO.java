@@ -1,6 +1,8 @@
 package clasesDAO;
 
 import java.sql.Connection;
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +16,16 @@ import clases.Pedidos;
 import clases.Productos;
 import util.SqlConnection;
 
+/**
+ * @author german y juan
+ */
+
 public class PedidoProductosDAO {
+	
+	/**
+	 * 
+	 * @param Recibe el pedidoProducto que vamos a insertar en la BBDD
+	 */
 	public static void insertPedidoProductos(PedidoProducto pedidoProducto) {
 		try {
 			Connection con = SqlConnection.abirConexion();
@@ -30,6 +41,12 @@ public class PedidoProductosDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param pasamos por argumento el idPedido del que queremos ver los Pedidos existentes
+	 * @return devuelve las listas de todos los PedidoProductos existentes
+	 */
 
 	public static List<PedidoProducto> getPedidoProductos(int idPedido) {
 		List<PedidoProducto> pp = null;
@@ -57,6 +74,12 @@ public class PedidoProductosDAO {
 		}
 		return pp;
 	}
+	
+	/**
+	 * 
+	 * @param introducimos por argumento el codigoCliente del que queremos ver los pedidos
+	 * @return Devuelve una lista de objetos PedidoProducto para ese cliente específico
+	 */
 
 	public static List<PedidoProducto> pedidosPorCliente(int codigoCliente) {
 		List<PedidoProducto> pedidoP = null;
@@ -89,6 +112,11 @@ public class PedidoProductosDAO {
 		return pedidoP;
 
 	}
+	
+	/**
+	 * 
+	 * @return Devuelve una lista de todos los objetos PedidoProducto.
+	 */
 
 	public static List<PedidoProducto> getPedidoProductos() {
 		List<PedidoProducto> pp = null;

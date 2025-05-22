@@ -2,6 +2,10 @@ package clases;
 
 import java.sql.Date;
 
+/**
+ * @author german y juan
+ */
+
 public class Pedidos {
 	private int idPedido;
 	private Clientes idCliente;

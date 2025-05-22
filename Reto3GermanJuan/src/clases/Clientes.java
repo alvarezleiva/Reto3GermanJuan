@@ -1,6 +1,8 @@
 package clases;
 
-
+/**
+ * @author german y juan
+ */
 public class Clientes {
 	private int idCliente;
 	private String nombre;

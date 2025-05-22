@@ -1,6 +1,8 @@
 package clasesDAO;
 
 import java.sql.Connection;
+
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +18,13 @@ import util.Functions;
 import util.SqlConnection;
 
 public class PedidosDAO {
+	
+
+	/**
+	 * 
+	 * @param pedido Pedido
+	 * @return devuelve la key del pedido, el idcliente auto_increment
+	 */
 	public static int insertPedido(Pedidos pedido) {
 		try {
 			Connection con = SqlConnection.abirConexion();
@@ -34,6 +43,10 @@ public class PedidosDAO {
 		}
 		return -1;
 	}
+	/**
+	 * 
+	 * @return Devuelve una lista con todos los pedidos
+	 */
 	public static List<Pedidos> getPedidos() {
 		try {
 			List<Pedidos> pedidosList = new ArrayList<>();
@@ -50,6 +63,12 @@ public class PedidosDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param nMes recibe el numero de mes del que queremos ver los pedidos
+	 * @return devuelve una lista con esos pedidos
+	 */
 	public static List<Pedidos> getPedidos(int nMes) {
 		try {
 			List<Pedidos> pedidosList = new ArrayList<>();

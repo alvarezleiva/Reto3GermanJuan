@@ -11,7 +11,15 @@ import java.util.List;
 import clases.Clientes;
 import util.SqlConnection;
 
+/**
+ * @author german y juan
+ */
 public class ClientesDAO {
+	
+	/**
+	 * 
+	 * @param Recibe el cliente que vamos a insertar en la BBDD
+	 */
 	public static void inserta(Clientes cliente) {
 		try {
 			// abro conexion
@@ -35,6 +43,11 @@ public class ClientesDAO {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param Recibe el cliente del que vamos a actualizar sus datos
+	 */
+	
 	public static void actualiza(Clientes cliente)
 	{
 		try {
@@ -56,6 +69,11 @@ public class ClientesDAO {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @return Devuelve una lista con todos los clientes
+	 */
 	public static List<Clientes> listaClientes() {
 		List<Clientes> list = null;
 		try {
@@ -72,6 +90,12 @@ public class ClientesDAO {
 		}
 		return list;
 	}
+	
+	/**
+	 * 
+	 * @param idCliente Recibe el idCliente con el que vamos a filtrar
+	 * @return Devuelve el cliente que tiene el idCliente indicado por argumento
+	 */
 	public static Clientes getCliente(int idCliente) {
 		Clientes cliente =null;
 		try {

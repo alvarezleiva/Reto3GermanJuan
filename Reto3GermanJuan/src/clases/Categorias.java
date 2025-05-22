@@ -1,5 +1,9 @@
 package clases;
 
+/**
+ * @author german y juan
+ */
+
 public class Categorias {
 
 	private int idCategoria;

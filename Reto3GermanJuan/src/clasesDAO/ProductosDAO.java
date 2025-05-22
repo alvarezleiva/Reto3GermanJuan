@@ -1,4 +1,6 @@
 
+
+
 package clasesDAO;
 
 import java.sql.Connection;
@@ -16,6 +18,11 @@ import util.Functions;
 import util.SqlConnection;
 
 public class ProductosDAO {
+	
+	/**
+	 * 
+	 * @param Recibe el producto que vamos a insertar en la BBDD
+	 */
 
 	public static void gestionProductos(Productos producto) {
 		try {
@@ -47,6 +54,12 @@ public class ProductosDAO {
 			SqlConnection.cierraConexion();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param Recibe la categoría de la que queremos mostrar los productos
+	 * @return devuelve una lista de productos con esa categoría
+	 */
 
 	public static List<Productos> getProductos(Categorias categoria) {
 		List<Productos> productos;
@@ -72,6 +85,11 @@ public class ProductosDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @return devuelve una lista de todos los productos
+	 */
 	public static List<Productos> listProductos() {
 		List<Productos> productos = null;
 		try {
@@ -91,6 +109,10 @@ public class ProductosDAO {
 		}
 		return productos;
 	}
+	
+	/**
+	 *  Esta funcion crea una categoria validando que no tenga el mismo id que otra
+	 */
 	public static void gestionCategorias() {
 		Scanner sc = new Scanner(System.in);
 
@@ -125,6 +147,10 @@ public class ProductosDAO {
 		ProductosDAO.gestionProductos(pro);
 	}
 
+	/**
+	 * 
+	 * @return devuelve una lista con todos los productos con un stock menor al deseado.
+	 */
 	public static List<Productos> bajoStock() {
 
 		List<Productos> productos = new ArrayList<>();
@@ -155,6 +181,11 @@ public class ProductosDAO {
 		return productos;
 
 	}
+	
+	/**
+	 * 
+	 * @param recibe el la nueva cantidad de stock que queremos en los productos
+	 */
 
 	public static void actualizarStock(int stock) {
 		try {
@@ -176,6 +207,14 @@ public class ProductosDAO {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param recibe el nombre por el que queremos buscar al producto
+	 * @param recibe la talla por la que queremos buscar el producto
+	 * @param recibe el color por el que queremos buscar el producto
+	 * @return devuelve una lista con los productos filtrados por esas características
+	 */
 	public static List<Productos> buscarProductos(String nombre,String talla,String color) {
 		List<Productos> productos = new ArrayList<>();
 		String query = "Select idproducto, idcategoria, nombre, precio, descripcion, color, talla, stock  from productos where nombre like ? and talla like ? and color like ?";

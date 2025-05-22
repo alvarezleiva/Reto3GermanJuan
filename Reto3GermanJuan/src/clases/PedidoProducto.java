@@ -1,5 +1,8 @@
 package clases;
 
+/**
+ * @author german y juan
+ */
 public class PedidoProducto implements Comparable<PedidoProducto> {
 
 	private int idpedidoproducto;
